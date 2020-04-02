@@ -1,6 +1,7 @@
 import { createContext, useReducer, useContext } from 'react';
 
 import * as counterReducer from './counter/counter.reducer';
+import * as registerReducer from './register/register.reducer';
 
 const StoreContext = createContext({});
 
@@ -11,7 +12,8 @@ const getReducerObject = ({ reducer, initialState }) => {
 
 export const StoreProvider = ({ children }) => {
   const store = {
-    counter: getReducerObject(counterReducer)
+    counter: getReducerObject(counterReducer),
+    register: getReducerObject(registerReducer)
   };
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
