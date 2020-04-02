@@ -11,26 +11,26 @@ import {
 const RequestsTable = () => {
     const columns = [
         {
-            title: 'ชื่อโรงพยาบาล',
-            dataIndex: 'hospital',
+            title: requestFieldLabel.hospitalName,
+            dataIndex: requestField.hospitalName,
             sorter: (a, b) => a.hospital - b.hospital,
             sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'จำนวน face shield',
-            dataIndex: 'faceShield',
+            title: requestFieldLabel.faceShieldDemand,
+            dataIndex: requestField.faceShieldDemand,
             sorter: (a, b) => a.faceShield - b.faceShield,
             sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'จำนวนเตียง',
-            dataIndex: 'bed',
+            title: requestFieldLabel.numberOfBed,
+            dataIndex: requestField.numberOfBed,
             sorter: (a, b) => a.bed - b.bed,
             sortDirections: ['descend', 'ascend'],
         },
         {
-            title: 'จังหวัด',
-            dataIndex: 'province'
+            title: requestFieldLabel.province,
+            dataIndex: requestField.province
         },
     ];
     const data = [
