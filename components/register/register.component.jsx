@@ -1,20 +1,25 @@
-import React from "react";
-import { StoreConnect } from "../../store/store";
-import styles from "./register.module.scss";
-import { Form, Input, InputNumber, Radio, Card, Button, Divider } from "antd";
+import React from 'react';
+import { StoreConnect } from '../../store/store';
+import styles from './register.module.scss';
+import { Form, Input, InputNumber, Radio, Card, Button, Divider } from 'antd';
 import {
   inputField,
   inputFieldLabel,
   hospitalTypes,
   hospitalTypesLabel
-} from "../../types";
-import TextArea from "antd/lib/input/TextArea";
-import { updateField } from "../../store/register/register.actions";
+} from '../../types';
+import TextArea from 'antd/lib/input/TextArea';
+import { MaskedInput } from 'antd-mask-input';
+import { updateField } from '../../store/register/register.actions';
 
 const Register = ({ updateField }) => {
   const RequiredFieldRule = text => ({
     required: true,
-    message: "กรุณากรอก" + text
+    message: 'กรุณากรอก' + text
+  });
+  const phoneRule = () => ({
+    pattern: new RegExp(/^0[0-9]-[0-9]{3}-[0-9]{4}$/, 'i'),
+    message: 'invalid number'
   });
 
   return (
@@ -69,12 +74,19 @@ const Register = ({ updateField }) => {
         <Form.Item
           label={inputFieldLabel.phoneNumber}
           name={inputField.phoneNumber}
-          rules={[RequiredFieldRule(inputFieldLabel.phoneNumber)]}
-          onChange={e =>
-            updateField(inputField.faceShieldDemand, e.target.value)
-          }
+          rules={[RequiredFieldRule(inputFieldLabel.phoneNumber), phoneRule()]}
+          // onChange={e =>
+          //   updateField(inputField.faceShieldDemand, e.target.value)
+          // }
         >
-          <Input/>
+          {/* <Input/> */}
+          <MaskedInput
+            mask="11-111-1111"
+            size="11"
+            onChange={e =>
+              updateField(inputField.faceShieldDemand, e.target.value)
+            }
+          />
         </Form.Item>
 
         <Form.Item
