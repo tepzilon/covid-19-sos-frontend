@@ -15,7 +15,6 @@ const sampleData = [
   }
 ]
 
-
 export const initialState = {
   data: sampleData,
   filter: ''
