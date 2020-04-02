@@ -2,13 +2,13 @@ import React from "react";
 import { StoreConnect } from "../../../store/store";
 import styles from "./requestsTable.module.scss";
 import { Table } from "antd";
+import { getFilteredRequests } from '../../../store/requests/requests.utils'
 import {
     requestField,
     requestFieldLabel
 } from "../../../types";
 
-
-const RequestsTable = ({ requestsValue }) => {
+const RequestsTable = ({ filter, requestsValue }) => {
     const columns = [
         {
             title: requestFieldLabel.hospitalName,
@@ -37,18 +37,16 @@ const RequestsTable = ({ requestsValue }) => {
             dataIndex: requestField.province
         },
     ];
-    const data = requestsValue;
+    const data = getFilteredRequests(requestsValue, filter);
     return (
         <Table columns={columns} dataSource={data} />
     );
 };
 
 const propsMapper = store => {
-    const { state, dispatch } = store.requests;
+    const { state } = store.requests;
     return {
-        updateFilter: () => {
-            dispatch(updateField(field, value));
-        },
+        filter: state.filter,
         requestsValue: state.data
     };
 };

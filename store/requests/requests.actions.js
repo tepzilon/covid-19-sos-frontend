@@ -5,7 +5,7 @@ export const updateData = data => ({
   payload: data
 });
 
-export const updateFilter = filter = ({
+export const updateFilter = filter => ({
   type: requestsActionTypes.UPDATE_FILTER,
   payload: filter
 })
