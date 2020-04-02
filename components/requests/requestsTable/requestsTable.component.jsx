@@ -3,7 +3,8 @@ import { StoreConnect } from "../../../store/store";
 import styles from "./requestsTable.module.scss";
 import { Table } from "antd";
 import {
-  
+    requestField,
+    requestFieldLabel
 } from "../../../types";
 
 
