@@ -6,13 +6,13 @@ const sampleData = [
     [requestField.hospitalName]: 'โรงพยาบาล A',
     [requestField.faceShieldDemand]: 1000,
     [requestField.numberOfBed]: 500,
-    [requestField.address]: 'ระยอง'
+    [requestField.province]: 'ระยอง'
   },
   {
     [requestField.hospitalName]: 'โรงพยาบาล B',
     [requestField.faceShieldDemand]: 1000,
     [requestField.numberOfBed]: 300,
-    [requestField.address]: 'ชลบุรี'
+    [requestField.province]: 'ชลบุรี'
   }
 ];
 
