@@ -1,13 +1,10 @@
-import React from 'react';
+import React from "react";
+import Register from "../components/register/register.component";
 
-import { inputField, hospitalTypes } from '../types';
+const RegisterPage = () => (
+  <div>
+    <Register />
+  </div>
+);
 
-const Register = () => {
-  return (
-    <div>
-      <input type="text" placeholder={inputField.name} />
-    </div>
-  );
-};
-
-export default Register;
+export default RegisterPage;

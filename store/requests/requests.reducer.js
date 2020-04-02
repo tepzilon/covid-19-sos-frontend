@@ -1,18 +1,18 @@
 import { requestsActionTypes } from './requests.types';
-import { inputField } from '../../types';
+import { requestField } from '../../types';
 
 const sampleData = [
   {
-    [inputField.hospitalName]: 'โรงพยาบาล A',
-    [inputField.faceShieldDemand]: 1000,
-    [inputField.numberOfBed]: 500,
-    [inputField.address]: 'ระยอง'
+    [requestField.hospitalName]: 'โรงพยาบาล A',
+    [requestField.faceShieldDemand]: 1000,
+    [requestField.numberOfBed]: 500,
+    [requestField.address]: 'ระยอง'
   },
   {
-    [inputField.hospitalName]: 'โรงพยาบาล B',
-    [inputField.faceShieldDemand]: 1000,
-    [inputField.numberOfBed]: 300,
-    [inputField.address]: 'ชลบุรี'
+    [requestField.hospitalName]: 'โรงพยาบาล B',
+    [requestField.faceShieldDemand]: 1000,
+    [requestField.numberOfBed]: 300,
+    [requestField.address]: 'ชลบุรี'
   }
 ];
 
