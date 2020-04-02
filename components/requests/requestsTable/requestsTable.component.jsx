@@ -13,19 +13,23 @@ const RequestsTable = ({ requestsValue }) => {
         {
             title: requestFieldLabel.hospitalName,
             dataIndex: requestField.hospitalName,
-            sorter: (a, b) => a.hospital - b.hospital,
+            sorter: (a, b) => {
+                if(a[requestField.hospitalName] < b[requestField.hospitalName]) return -1;
+                else if (a[requestField.hospitalName] > b[requestField.hospitalName]) return 1;
+                return 0;
+            },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: requestFieldLabel.faceShieldDemand,
             dataIndex: requestField.faceShieldDemand,
-            sorter: (a, b) => a.faceShield - b.faceShield,
+            sorter: (a, b) => a[requestField.faceShieldDemand] - b[requestField.faceShieldDemand],
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: requestFieldLabel.numberOfBed,
             dataIndex: requestField.numberOfBed,
-            sorter: (a, b) => a.bed - b.bed,
+            sorter: (a, b) => a[requestField.numberOfBed] - b[requestField.numberOfBed],
             sortDirections: ['descend', 'ascend'],
         },
         {
