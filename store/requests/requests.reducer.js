@@ -1,4 +1,5 @@
 import { requestsActionTypes } from "./requests.types";
+import { inputField } from "../../types";
 
 const sampleData = [
   {
