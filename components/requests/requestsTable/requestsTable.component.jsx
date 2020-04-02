@@ -8,7 +8,7 @@ import {
 } from "../../../types";
 
 
-const RequestsTable = () => {
+const RequestsTable = ({ requestsValue }) => {
     const columns = [
         {
             title: requestFieldLabel.hospitalName,
@@ -33,29 +33,19 @@ const RequestsTable = () => {
             dataIndex: requestField.province
         },
     ];
-    const data = [
-        {
-            key: '1',
-            hospital: 'โรงพยาบาลสบายดี',
-            faceShield: 32,
-            bed: 55,
-            province: 'กรุงเทพมหานคร'
-        },
-        {
-            key: '2',
-            hospital: 'โรงพยาบาลบลาๆ',
-            faceShield: 30,
-            bed: 58,
-            province: 'สมุทรปราการ'
-        },
-    ];
+    const data = requestsValue;
     return (
         <Table columns={columns} dataSource={data} />
     );
 };
 
-const propsMapper = store => ({
-  
-});
-
+const propsMapper = store => {
+    const { state, dispatch } = store.requests;
+    return {
+        updateFilter: () => {
+            dispatch(updateField(field, value));
+        },
+        requestsValue: state.data
+    };
+};
 export default StoreConnect(propsMapper)(RequestsTable);
