@@ -3,22 +3,24 @@ export const inputField = {
   hospitalName: 'hospitalName',
   faceShieldDemand: 'faceShieldDemand',
   address: 'address',
+  phoneNumber: 'phoneNumber',
   hospitalType: 'hospitalType',
   numberOfBed: 'numberOfBed',
   notice: 'notice',
-  id: 'id',
+  username: 'username',
   password: 'password'
 };
 
 export const inputFieldLabel = {
-  name: 'ชื่อผู้ส่งคำขอ',
+  name: 'ชื่อ-นามสกุลของผู้ส่งคำขอ',
   hospitalName: 'ชื่อโรงพยาบาล',
   faceShieldDemand: 'จำนวน face shield ที่ต้องการ (ชิ้น)',
   address: 'ที่อยู่การจัดส่ง',
+  phoneNumber: 'เบอร์โทรติดต่อ',
   hospitalType: 'ประเภทของสถานพยาบาล',
   numberOfBed: 'จำนวนเตียง (หลัง)',
   notice: 'หมายเหตุ',
-  id: 'ไอดี',
+  username: 'ชื่อบัญชีผู้ใช้',
   password: 'พาสเวิร์ด'
 };
 

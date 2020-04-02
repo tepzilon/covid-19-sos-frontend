@@ -6,15 +6,16 @@ export const initialState = {
   [inputField.hospitalName]: '',
   [inputField.faceShieldDemand]: '',
   [inputField.address]: '',
+  [inputField.phoneNumber]: '',
   [inputField.hospitalType]: '',
   [inputField.numberOfBed]: '',
   [inputField.notice]: '',
-  [inputField.id]: '',
+  [inputField.username]: '',
   [inputField.password]: ''
 };
 
 export const reducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
     case registerActionTypes.UPDATE_FIELD:
       return {
         ...state,
