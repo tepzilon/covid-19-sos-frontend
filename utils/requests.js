@@ -4,14 +4,6 @@ import {
   requestStatusColours
 } from '../types/requests';
 
-export const getFilteredRequests = (requests, filter) => {
-  return requests.filter(
-    request =>
-      request[requestField.hospitalName].includes(filter) ||
-      request[requestField.province].includes(filter)
-  );
-};
-
 const getStatusHTML = status => {
   let color = requestStatusColours.pending;
   switch (status) {
