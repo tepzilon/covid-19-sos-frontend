@@ -4,10 +4,11 @@ import { registerActionTypes } from './register.types';
 export const initialState = {
   [inputField.name]: '',
   [inputField.hospitalName]: '',
+  [inputField.hospitalType]: '',
   [inputField.faceShieldDemand]: '',
   [inputField.address]: '',
+  [inputField.province]: '',
   [inputField.phoneNumber]: '',
-  [inputField.hospitalType]: '',
   [inputField.email]: '',
   [inputField.notice]: '',
   [inputField.username]: '',
