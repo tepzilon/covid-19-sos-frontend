@@ -1,10 +1,13 @@
-import React from "react";
-import Register from "../components/register/register.component";
+import React from 'react';
+import Register from '../components/register/register.component';
+import GridWrap from '../components/gridWrap/gridWrap.component';
+
+import { gridSize } from '../types';
 
 const RegisterPage = () => (
-  <div>
+  <GridWrap size={gridSize.sm}>
     <Register />
-  </div>
+  </GridWrap>
 );
 
 export default RegisterPage;

@@ -1,9 +1,9 @@
-import { requestField } from '../../types/requests';
+export const toggleModalShow = modal => ({
+  ...modal,
+  show: !modal.show
+});
 
-export const getFilteredRequests = (requests, filter) => {
-  return requests.filter(
-    request =>
-      request[requestField.hospitalName].includes(filter) ||
-      request[requestField.province].includes(filter)
-  );
-};
+export const updateModalRequestKey = (modal, key) => ({
+  ...modal,
+  requestKey: key
+});

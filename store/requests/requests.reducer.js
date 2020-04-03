@@ -1,26 +1,14 @@
 import { requestsActionTypes } from './requests.types';
-import { requestField } from '../../types';
-
-const sampleData = [
-  {
-    key: 1,
-    [requestField.hospitalName]: 'โรงพยาบาล A',
-    [requestField.faceShieldDemand]: 1000,
-    [requestField.numberOfBed]: 500,
-    [requestField.province]: 'ระยอง'
-  },
-  {
-    key: 2,
-    [requestField.hospitalName]: 'โรงพยาบาล B',
-    [requestField.faceShieldDemand]: 1000,
-    [requestField.numberOfBed]: 300,
-    [requestField.province]: 'ชลบุรี'
-  }
-];
+import dummy from './dummy';
+import { toggleModalShow, updateModalRequestKey } from './requests.utils';
 
 export const initialState = {
-  data: sampleData,
-  filter: ''
+  data: dummy,
+  filter: '',
+  modal: {
+    show: false,
+    requestKey: 0
+  }
 };
 
 export const reducer = (state, action) => {
@@ -34,6 +22,16 @@ export const reducer = (state, action) => {
       return {
         ...state,
         filter: action.payload
+      };
+    case requestsActionTypes.TOGGLE_MODAL_SHOW:
+      return {
+        ...state,
+        modal: toggleModalShow(state.modal)
+      };
+    case requestsActionTypes.UPDATE_MODAL_REQUEST_KEY:
+      return {
+        ...state,
+        modal: updateModalRequestKey(state.modal, action.payload)
       };
   }
 };
