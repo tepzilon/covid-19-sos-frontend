@@ -20,18 +20,17 @@ const Requests = ({
 }) => {
   return (
     <Card
-      title={
-        <h1 style={{ textAlign: 'center' }}>
-          รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield
-        </h1>
-      }
+      bordered={false}
     >
-      <div style={{ margin: '2vw auto', width: '40%' }}>
+      <h1 style={{ textAlign: 'center' }}>
+        รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield
+      </h1>
+      <div style={{ margin: '2rem auto', width: '50%' }}>
         <Row>
-          <Col span={2}>
+          <Col span={4}>
             <p style={{ textAlign: 'center' }}>ค้นหา</p>
           </Col>
-          <Col span={22}>
+          <Col span={20}>
             <Select
               showSearch
               optionFilterProp='children'
