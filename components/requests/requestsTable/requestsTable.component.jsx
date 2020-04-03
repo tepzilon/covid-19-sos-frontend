@@ -8,7 +8,7 @@ import {
     requestFieldLabel
 } from "../../../types";
 
-const RequestsTable = ({ filter, requestsValue }) => {
+const RequestsTable = ({ requestsValue }) => {
     const columns = [
         {
             title: requestFieldLabel.hospitalName,
@@ -37,7 +37,7 @@ const RequestsTable = ({ filter, requestsValue }) => {
             dataIndex: requestField.province
         },
     ];
-    const data = getFilteredRequests(requestsValue, filter);
+    const data = requestsValue;
     return (
         <Table columns={columns} dataSource={data} />
     );
@@ -46,7 +46,6 @@ const RequestsTable = ({ filter, requestsValue }) => {
 const propsMapper = store => {
     const { state } = store.requests;
     return {
-        filter: state.filter,
         requestsValue: state.data
     };
 };
