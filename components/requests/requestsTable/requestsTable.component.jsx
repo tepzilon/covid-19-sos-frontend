@@ -51,7 +51,7 @@ const RequestsTable = ({ filter, requestsValue }) => {
       sortDirections: ['descend', 'ascend']
     }
   ];
-  const data = getFilteredRequests(requestsValue, filter);
+  const data = requestsValue;
   return <Table columns={columns} dataSource={getInjectedHTMLRequests(data)} />;
 };
 
