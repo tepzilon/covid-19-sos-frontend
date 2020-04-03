@@ -4,9 +4,7 @@ import styles from "./requests.module.scss";
 import RequestsTable from './requestsTable/requestsTable.component'
 import { Card, Select } from 'antd'
 import { updateFilter } from '../../store/requests/requests.actions';
-import {
-    requestField
-} from "../../types";
+import { requestField } from '../../types';
 
 const { Option } = Select;
 

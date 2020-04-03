@@ -1,25 +1,8 @@
 import { requestsActionTypes } from './requests.types';
-import { requestField } from '../../types';
-
-const sampleData = [
-  {
-    key: 1,
-    [requestField.hospitalName]: 'โรงพยาบาล A',
-    [requestField.faceShieldDemand]: 1000,
-    [requestField.numberOfBed]: 500,
-    [requestField.province]: 'ระยอง'
-  },
-  {
-    key: 2,
-    [requestField.hospitalName]: 'โรงพยาบาล B',
-    [requestField.faceShieldDemand]: 1000,
-    [requestField.numberOfBed]: 300,
-    [requestField.province]: 'ชลบุรี'
-  }
-];
+import requestsDummy from './requests.dummy';
 
 export const initialState = {
-  data: sampleData,
+  data: requestsDummy,
   filter: ''
 };
 
