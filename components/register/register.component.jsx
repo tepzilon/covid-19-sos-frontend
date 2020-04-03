@@ -124,7 +124,7 @@ const Register = ({ updateField }) => {
         </Form.Item>
 
         <Divider />
-        <div>กรุณากรอกไอดีและพาสเวิร์ดเพื่อเข้าใช้งานครั้งต่อไป??</div>
+        <div>กรุณากรอกไอดีและพาสเวิร์ดเพื่อเข้าใช้งานครั้งต่อไป</div>
 
         <Form.Item
           label={inputFieldLabel.username}
@@ -145,7 +145,7 @@ const Register = ({ updateField }) => {
         </Form.Item>
 
         <Form.Item>
-          <div style={{display:'flex',justifyContent:'center'}}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <Button type="primary" htmlType="submit">
               ลงทะเบียน
             </Button>

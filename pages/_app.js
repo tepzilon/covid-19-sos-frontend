@@ -1,5 +1,4 @@
 import "antd/dist/antd.css";
-import "./_app.scss";
 
 import { StoreProvider } from "../store/store";
 import Header from "./global/Header";
