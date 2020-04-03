@@ -2,14 +2,20 @@ export const requestField = {
   hospitalName: 'hospitalName',
   faceShieldDemand: 'faceShieldDemand',
   status: 'status',
-  province: 'province'
+  province: 'province',
+  name: 'name',
+  address: 'address',
+  phoneNumber: 'phoneNumber'
 };
 
 export const requestFieldLabel = {
   hospitalName: 'ชื่อโรงพยาบาล',
   faceShieldDemand: 'จำนวน face shield',
   status: 'สถานะ',
-  province: 'จังหวัด'
+  province: 'จังหวัด',
+  name: 'ชื่อ-นามสกุล',
+  address: 'ที่อยู่',
+  phoneNumber: 'เบอร์โทรศัพท์'
 };
 
 export const requestStatus = {

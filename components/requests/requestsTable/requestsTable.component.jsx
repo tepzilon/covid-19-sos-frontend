@@ -9,9 +9,10 @@ import {
   getCompareString,
   getCompareNumber
 } from '../../../utils/requests';
+import { updateModalRequestKey, toggleModalShow } from '../../../store/requests/requests.actions';
 import { requestField, requestFieldLabel } from '../../../types';
 
-const RequestsTable = ({ filter, requestsValue }) => {
+const RequestsTable = ({updateModalRequestKey, toggleModalShow, requestsValue}) => {
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -52,13 +53,31 @@ const RequestsTable = ({ filter, requestsValue }) => {
     }
   ];
   const data = requestsValue;
-  return <Table columns={columns} dataSource={getInjectedHTMLRequests(data)} />;
+  return (
+    <Table 
+        columns={columns} 
+        dataSource={getInjectedHTMLRequests(data)} 
+        onRow={(row, index) => {
+            return {
+                onClick: e => {
+                    updateModalRequestKey(requestsValue[index].key);
+                    toggleModalShow();
+                }
+            }
+        }} 
+    />
+  )
 };
 
 const propsMapper = store => {
-  const { state } = store.requests;
+  const { state, dispatch } = store.requests;
   return {
-    filter: state.filter,
+    updateModalRequestKey: key => {
+        dispatch(updateModalRequestKey(key));
+    },
+    toggleModalShow: () => {
+        dispatch(toggleModalShow());
+    },
     requestsValue: state.data
   };
 };
