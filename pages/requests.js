@@ -1,10 +1,12 @@
-import React from "react";
-import Requests from "../components/requests/requests.component";
+import React from 'react';
+import Requests from '../components/requests/requests.component';
+import GridWrap from '../components/gridWrap/gridWrap.component';
+import { gridSize, backgroundColours } from '../types';
 
 const RequestsPage = () => (
-  <div>
+  <GridWrap size={gridSize.md} color={backgroundColours.Requests}>
     <Requests />
-  </div>
+  </GridWrap>
 );
 
 export default RequestsPage;

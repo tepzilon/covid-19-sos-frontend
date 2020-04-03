@@ -1,12 +1,16 @@
 import { Row, Col } from 'antd';
 import { gridSize } from '../../types';
 
-const GridWrap = ({ size = 'sm', children }) => {
+const GridWrap = ({ size = 'sm', color = '#ffffff', children }) => {
   let offset, span;
   switch (size) {
     case gridSize.sm:
       offset = 7;
       span = 10;
+      break;
+    case gridSize.md:
+      offset = 4;
+      span = 16;
       break;
     default:
       offset = 0;
@@ -27,7 +31,7 @@ const GridWrap = ({ size = 'sm', children }) => {
       <style jsx global>
         {`
           body {
-            background: #deeefc;
+            background: ${color};
           }
         `}
       </style>

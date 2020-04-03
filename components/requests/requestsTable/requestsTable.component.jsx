@@ -65,7 +65,6 @@ const RequestsTable = ({updateModalRequestKey, toggleModalShow, requestsValue}) 
                 }
             }
         }} 
-        style={{width: '60%', margin: 'auto'}}
     />
   )
 };
