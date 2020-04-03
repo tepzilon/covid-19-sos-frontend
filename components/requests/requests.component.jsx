@@ -12,29 +12,35 @@ const Requests = ({updateModalRequestKey, toggleModalShow, show, requestKey, req
 
     return (
         <Card title={<h1 style={{textAlign: "center"}}>รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield</h1>}>
-            <div style={{margin: 'auto', width: '50%'}}>
-                <p style={{display: 'inline'}} >ค้นหา</p>
-                <Select 
-                    showSearch 
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }  
-                    placeholder="ชื่อโรงพยาบาล/จังหวัด" 
-                    style={{width: '80%'}} 
-                    onChange={e => {
-                        updateModalRequestKey(parseInt(e)); 
-                        toggleModalShow();
-                    }}
-                >
-                    {
-                        requestsValue.map((e,i) => {
-                            return (
-                                <Option value={e.key} key={i} >{e[requestField.hospitalName]}</Option>
-                            );
-                        })
-                    }
-                </Select>
+            <div style={{margin: '2vw auto', width: '40%'}}>
+                <Row>
+                    <Col span={2}>
+                        <p style={{textAlign: 'center'}}>ค้นหา</p>
+                    </Col>
+                    <Col span={22}>
+                        <Select 
+                            showSearch 
+                            optionFilterProp="children"
+                            filterOption={(input, option) =>
+                                option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }  
+                            placeholder="ชื่อโรงพยาบาล/จังหวัด" 
+                            style={{width: '100%'}} 
+                            onChange={e => {
+                                updateModalRequestKey(parseInt(e)); 
+                                toggleModalShow();
+                            }}
+                        >
+                            {
+                                requestsValue.map((e,i) => {
+                                    return (
+                                    <Option value={e.key} key={i} >{e[requestField.hospitalName]}</Option>
+                                    );
+                                })
+                            }
+                        </Select>
+                    </Col>
+                </Row>
             </div>
             <Modal
                 title={requestsValue.find(e => e.key === requestKey)[requestField.hospitalName]}
