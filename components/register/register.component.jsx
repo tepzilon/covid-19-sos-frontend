@@ -23,7 +23,7 @@ const Register = ({ updateField }) => {
   });
 
   return (
-    <Card>
+    <Card style={{ borderRadius: '10px' }}>
       <div>
         <h1>ลงทะเบียนเพื่อขอรับ Face shield</h1>
         <p>
