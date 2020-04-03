@@ -5,7 +5,7 @@ export const inputField = {
   address: 'address',
   phoneNumber: 'phoneNumber',
   hospitalType: 'hospitalType',
-  numberOfBed: 'numberOfBed',
+  email: 'email',
   notice: 'notice',
   username: 'username',
   password: 'password'
@@ -18,7 +18,7 @@ export const inputFieldLabel = {
   address: 'ที่อยู่การจัดส่ง',
   phoneNumber: 'เบอร์โทรติดต่อ',
   hospitalType: 'ประเภทของสถานพยาบาล',
-  numberOfBed: 'จำนวนเตียง (หลัง)',
+  email: 'อีเมล์',
   notice: 'หมายเหตุ',
   username: 'ชื่อบัญชีผู้ใช้',
   password: 'พาสเวิร์ด'

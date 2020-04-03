@@ -8,7 +8,7 @@ export const initialState = {
   [inputField.address]: '',
   [inputField.phoneNumber]: '',
   [inputField.hospitalType]: '',
-  [inputField.numberOfBed]: '',
+  [inputField.email]: '',
   [inputField.notice]: '',
   [inputField.username]: '',
   [inputField.password]: ''
