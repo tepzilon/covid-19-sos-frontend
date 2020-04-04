@@ -9,6 +9,11 @@ import {
   getCompareString,
   getCompareNumber,
 } from "../../../utils/requests";
+import {
+  updateModalRequestKey,
+  toggleModalShow,
+  updateData,
+} from "../../../store/requests/requests.actions";
 import { requestField, requestFieldLabel } from "../../../types";
 
 const RequestsTable = ({ filter, requestsValue }) => {
@@ -65,8 +70,8 @@ const RequestsTable = ({ filter, requestsValue }) => {
 const propsMapper = (store) => {
   const { state, dispatch } = store.requests;
   return {
-    updateModalRequestKey: (key) => {
-      dispatch(updateModalRequestKey(key));
+    updateModalRequestID: (id) => {
+      dispatch(updateModalRequestKey(id));
     },
     toggleModalShow: () => {
       dispatch(toggleModalShow());
