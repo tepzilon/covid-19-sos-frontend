@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StoreConnect } from '../../../store/store';
 import styles from './requestsTable.module.scss';
 import { Table } from 'antd';
@@ -7,11 +7,27 @@ import {
   getInjectedHTMLRequests,
   getStatusPriority,
   getCompareString,
-  getCompareNumber
+  getCompareNumber,
 } from '../../../utils/requests';
+import { getRequests } from '../../../api';
 import { requestField, requestFieldLabel } from '../../../types';
 
 const RequestsTable = ({ filter, requestsValue }) => {
+  // useEffect(() => {
+  //   async function mountGetRequest() {
+  //     const response = await getRequests();
+  //     if (response.error) {
+  //       // show modal
+  //     } else {
+  //       // set store
+  //     }
+  //   }
+  //   mountGetRequest();
+  //   return () => {
+  //     cleanup;
+  //   };
+  // }, []);
+
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -21,7 +37,7 @@ const RequestsTable = ({ filter, requestsValue }) => {
           a[requestField.hospitalName],
           b[requestField.hospitalName]
         ),
-      sortDirections: ['descend', 'ascend']
+      sortDirections: ['descend', 'ascend'],
     },
     {
       title: requestFieldLabel.faceShieldDemand,
@@ -31,7 +47,7 @@ const RequestsTable = ({ filter, requestsValue }) => {
           a[requestField.faceShieldDemand],
           b[requestField.faceShieldDemand]
         ),
-      sortDirections: ['descend', 'ascend']
+      sortDirections: ['descend', 'ascend'],
     },
     {
       title: requestFieldLabel.status,
@@ -41,25 +57,25 @@ const RequestsTable = ({ filter, requestsValue }) => {
           getStatusPriority(a[requestField.status].props.children),
           getStatusPriority(b[requestField.status].props.children)
         ),
-      sortDirections: ['descend', 'ascend']
+      sortDirections: ['descend', 'ascend'],
     },
     {
       title: requestFieldLabel.province,
       dataIndex: requestField.province,
       sorter: (a, b) =>
         getCompareString(a[requestField.province], b[requestField.province]),
-      sortDirections: ['descend', 'ascend']
-    }
+      sortDirections: ['descend', 'ascend'],
+    },
   ];
   const data = requestsValue;
   return <Table columns={columns} dataSource={getInjectedHTMLRequests(data)} />;
 };
 
-const propsMapper = store => {
+const propsMapper = (store) => {
   const { state } = store.requests;
   return {
     filter: state.filter,
-    requestsValue: state.data
+    requestsValue: state.data,
   };
 };
 

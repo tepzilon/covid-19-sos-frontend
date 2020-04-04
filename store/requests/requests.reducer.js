@@ -7,8 +7,8 @@ export const initialState = {
   filter: '',
   modal: {
     show: false,
-    requestKey: 0
-  }
+    requestKey: 0,
+  },
 };
 
 export const reducer = (state, action) => {
@@ -16,22 +16,22 @@ export const reducer = (state, action) => {
     case requestsActionTypes.UPDATE_DATA:
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
       };
     case requestsActionTypes.UPDATE_FILTER:
       return {
         ...state,
-        filter: action.payload
+        filter: action.payload,
       };
     case requestsActionTypes.TOGGLE_MODAL_SHOW:
       return {
         ...state,
-        modal: toggleModalShow(state.modal)
+        modal: toggleModalShow(state.modal),
       };
     case requestsActionTypes.UPDATE_MODAL_REQUEST_KEY:
       return {
         ...state,
-        modal: updateModalRequestKey(state.modal, action.payload)
+        modal: updateModalRequestKey(state.modal, action.payload),
       };
   }
 };

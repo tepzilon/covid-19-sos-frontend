@@ -1,34 +1,34 @@
-import React from "react";
-import { StoreConnect } from "../../store/store";
-import styles from "./register.module.scss";
-import { Form, Input, InputNumber, Radio, Card, Button, Divider } from "antd";
+import React from 'react';
+import { StoreConnect } from '../../store/store';
+import styles from './register.module.scss';
+import { Form, Input, InputNumber, Radio, Card, Button, Divider } from 'antd';
 import {
   inputField,
   inputFieldLabel,
   hospitalTypes,
   hospitalTypesLabel,
-} from "../../types";
-import TextArea from "antd/lib/input/TextArea";
-import { MaskedInput } from "antd-mask-input";
-import { updateField } from "../../store/register/register.actions";
+} from '../../types';
+import TextArea from 'antd/lib/input/TextArea';
+import { MaskedInput } from 'antd-mask-input';
+import { updateField } from '../../store/register/register.actions';
 
 const Register = ({ updateField }) => {
   const RequiredFieldRule = (text) => ({
     required: true,
-    message: "กรุณากรอก" + text,
+    message: 'กรุณากรอก' + text,
   });
   const phoneRule = () => ({
-    pattern: new RegExp(/^0[0-9]-[0-9]{3}-[0-9]{4}[0-9_]$/, "i"),
-    message: "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+    pattern: new RegExp(/^0[0-9]-[0-9]{3}-[0-9]{4}[0-9_]$/, 'i'),
+    message: 'หมายเลขโทรศัพท์ไม่ถูกต้อง',
   });
 
   return (
-    <Card style={{ borderRadius: "10px" }}>
+    <Card style={{ borderRadius: '10px' }}>
       <div>
         <h1>ลงทะเบียนเพื่อขอรับ Face shield</h1>
         <p>
-          คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
-          คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
+          อธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
+          คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
         </p>
       </div>
       <Divider />
@@ -145,7 +145,7 @@ const Register = ({ updateField }) => {
         </Form.Item>
 
         <Form.Item>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type="primary" htmlType="submit">
               ลงทะเบียน
             </Button>
