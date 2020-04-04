@@ -13,7 +13,7 @@ import {
   updateModalRequestKey,
   toggleModalShow,
 } from "../../../store/requests/requests.actions";
-import { requestField, requestFieldLabel } from "../../../types";
+import { requestField, requestFieldLabel, backgroundColours } from "../../../types";
 
 const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleModalShow }) => {
   const columns = [
@@ -62,6 +62,7 @@ const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleMod
           toggleModalShow();
         },
       })}
+      pagination={{position: ['bottomCenter']}}
     />
   );
 };
