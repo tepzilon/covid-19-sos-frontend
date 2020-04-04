@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StoreConnect } from '../../store/store';
 import styles from './requests.module.scss';
 import RequestsTable from './requestsTable/requestsTable.component';
-import { Card, Select, Modal, Row, Col } from 'antd';
+import { Card, Select, Modal, Row, Col, Spin } from 'antd';
 import {
   updateModalRequestKey,
   toggleModalShow,
@@ -21,8 +21,11 @@ const Requests = ({
   requestKey,
   requestsValue,
 }) => {
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function mountGetRequest() {
+      setLoading(true);
       const response = await getRequests();
       if (response.error) {
         // show modal
@@ -30,6 +33,7 @@ const Requests = ({
         console.log(response.data);
         updateData(response.data);
       }
+      setLoading(false);
     }
     mountGetRequest();
   }, []);
@@ -112,6 +116,14 @@ const Requests = ({
             </Col>
           </Row>
         </Modal> */}
+      {loading ? (
+        <Row>
+          <Col offset={12}>
+            {' '}
+            <Spin size="large" style={{ transform: 'translateX(-50%)' }} />
+          </Col>
+        </Row>
+      ) : null}
       <RequestsTable />
     </Card>
   );
