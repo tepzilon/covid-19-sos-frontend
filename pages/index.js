@@ -1,23 +1,14 @@
-import React, { useState } from "react";
-import { Input } from "antd";
-
-import PageHeader from "../components/pageHeader/pageHeader.component";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const Home = () => {
-  const [searchKey, setSearchKey] = useState("");
+  const router = useRouter();
 
-  return (
-    <>
-      <PageHeader label="แสดงผล Face Sheild" />
-      <Input
-        label="search"
-        onChange={(e) => {
-          setSearchKey(e.value);
-        }}
-        value={searchKey}
-      />
-    </>
-  );
+  useEffect(() => {
+    router.push('/register');
+  }, []);
+
+  return <></>;
 };
 
 export default Home;
