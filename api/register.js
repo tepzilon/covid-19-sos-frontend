@@ -8,6 +8,6 @@ export const postRequest = async (requestDatas) => {
     );
     return data;
   } catch (error) {
-    //
+    return { error };
   }
 };

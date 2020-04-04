@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import {
-  Card, Select, Modal, Row, Col, Spin,
-} from "antd";
-import { StoreConnect } from "../../store/store";
-import styles from "./requests.module.scss";
-import RequestsTable from "./requestsTable/requestsTable.component";
+import React, { useEffect, useState } from 'react';
+import { Card, Select, Modal, Row, Col, Spin, Button } from 'antd';
+import { StoreConnect } from '../../store/store';
+import styles from './requests.module.scss';
+import RequestsTable from './requestsTable/requestsTable.component';
 import {
   updateModalRequestKey,
   toggleModalShow,
   updateData,
-} from "../../store/requests/requests.actions";
-import { getRequests } from "../../api";
-import { requestField, requestFieldLabel, gridSize } from "../../types";
+} from '../../store/requests/requests.actions';
+import { getRequests } from '../../api';
+import { requestField, requestFieldLabel, gridSize } from '../../types';
 
 const { Option } = Select;
 
@@ -24,15 +22,16 @@ const Requests = ({
   requestsValue,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     async function mountGetRequest() {
       setLoading(true);
       const response = await getRequests();
+      console.log(response);
       if (response.error) {
-        // show modal
+        setFetchError(true);
       } else {
-        console.log(response.data);
         updateData(response.data);
       }
       setLoading(false);
@@ -42,23 +41,25 @@ const Requests = ({
 
   return (
     <Card bordered={false}>
-      <h1 style={{ textAlign: "center" }}>
+      <h1 style={{ textAlign: 'center' }}>
         รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield
       </h1>
-      <div style={{ margin: "2rem auto", width: "50%" }}>
+      <div style={{ margin: '2rem auto', width: '50%' }}>
         <Row>
           <Col span={4}>
-            <p style={{ textAlign: "center" }}>ค้นหา</p>
+            <p style={{ textAlign: 'center' }}>ค้นหา</p>
           </Col>
           <Col span={20}>
             <Select
               showSearch
               optionFilterProp="children"
-              filterOption={(input, option) => option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0}
+              filterOption={(input, option) =>
+                option.props.children
+                  .toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0
+              }
               placeholder="ชื่อโรงพยาบาล/จังหวัด"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               onChange={(e) => {
                 updateModalRequestKey(parseInt(e));
                 toggleModalShow();
@@ -114,11 +115,27 @@ const Requests = ({
             </Col>
           </Row>
         </Modal> */}
+      <Modal
+        title="เซิร์ฟเวอร์ขัดข้อง"
+        visible={fetchError}
+        footer={[
+          <Button
+            key="back"
+            onClick={() => {
+              setFetchError(false);
+            }}
+          >
+            OK
+          </Button>,
+        ]}
+      >
+        <p>ไม่สามารถรับข้อมูลจากเซิร์ฟเวอร์ได้ในขณะนี้</p>
+      </Modal>
       {loading ? (
         <Row>
           <Col offset={12}>
-            {" "}
-            <Spin size="large" style={{ transform: "translateX(-50%)" }} />
+            {' '}
+            <Spin size="large" style={{ transform: 'translateX(-50%)' }} />
           </Col>
         </Row>
       ) : null}

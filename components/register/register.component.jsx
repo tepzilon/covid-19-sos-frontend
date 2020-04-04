@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   Form,
   Input,
@@ -9,24 +9,27 @@ import {
   Button,
   Divider,
   Select,
-} from "antd";
-import TextArea from "antd/lib/input/TextArea";
-import { MaskedInput } from "antd-mask-input";
+  Modal,
+} from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+import { MaskedInput } from 'antd-mask-input';
 import {
   inputField,
   inputFieldLabel,
   hospitalTypes,
   hospitalTypesLabel,
   THAI_PROVINCES,
-} from "../../types";
-import styles from "./register.module.scss";
-import { StoreConnect } from "../../store/store";
-import { updateField } from "../../store/register/register.actions";
+} from '../../types';
+import styles from './register.module.scss';
+import { StoreConnect } from '../../store/store';
+import { updateField } from '../../store/register/register.actions';
 
-import { postRequest } from "../../api/register";
+import { postRequest } from '../../api/register';
 
 const Register = ({ state, updateField }) => {
   const [loading, setLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+
   const router = useRouter();
 
   const RequiredFieldRule = (text) => ({
@@ -34,31 +37,35 @@ const Register = ({ state, updateField }) => {
     message: `กรุณากรอก${text}`,
   });
   const phoneRule = () => ({
-    pattern: new RegExp(/^0[0-9]-[0-9]{4}-[0-9]{3}[0-9_]$/, "i"),
-    message: "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+    pattern: new RegExp(/^0[0-9]-[0-9]{4}-[0-9]{3}[0-9_]$/, 'i'),
+    message: 'หมายเลขโทรศัพท์ไม่ถูกต้อง',
   });
   const usernameRule = () => ({
     pattern: new RegExp(/^[0-9a-zA-Z_]*$/),
-    message: "does not match ^[0-9a-zA-Z]*$",
+    message: 'does not match ^[0-9a-zA-Z]*$',
   });
   const passwordRule = () => ({
     pattern: new RegExp(/.{8,}/),
-    message: "len must >= 8",
+    message: 'len must >= 8',
   });
   const emailRule = () => ({
     pattern: new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
-    message: "not email",
+    message: 'not email',
   });
 
   const registerRequest = async () => {
     setLoading(true);
-    await postRequest(state);
-    router.push("/register-complete");
+    const response = await postRequest(state);
+    if (response.error) {
+      setFetchError(true);
+    } else {
+      router.push('/register-complete');
+    }
     setLoading(false);
   };
 
   return (
-    <Card style={{ borderRadius: "10px" }}>
+    <Card style={{ borderRadius: '10px' }}>
       <div>
         <h1>ลงทะเบียนเพื่อขอรับ Face shield</h1>
         <p>
@@ -106,7 +113,9 @@ const Register = ({ state, updateField }) => {
           label={inputFieldLabel.faceShieldDemand}
           name={inputField.faceShieldDemand}
           rules={[RequiredFieldRule(inputFieldLabel.faceShieldDemand)]}
-          onChange={(e) => updateField(inputField.faceShieldDemand, e.target.value)}
+          onChange={(e) =>
+            updateField(inputField.faceShieldDemand, e.target.value)
+          }
         >
           <InputNumber min={0} />
         </Form.Item>
@@ -148,7 +157,9 @@ const Register = ({ state, updateField }) => {
           <MaskedInput
             mask="11-1111-1111"
             size="12"
-            onChange={(e) => updateField(inputField.phoneNumber, e.target.value)}
+            onChange={(e) =>
+              updateField(inputField.phoneNumber, e.target.value)
+            }
           />
         </Form.Item>
 
@@ -192,13 +203,29 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
 
         <Form.Item>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type="primary" htmlType="submit" loading={loading}>
               ลงทะเบียน
             </Button>
           </div>
         </Form.Item>
       </Form>
+      <Modal
+        title="เซิร์ฟเวอร์ขัดข้อง"
+        visible={fetchError}
+        footer={[
+          <Button
+            key="back"
+            onClick={() => {
+              setFetchError(false);
+            }}
+          >
+            OK
+          </Button>,
+        ]}
+      >
+        <p>ไม่สามารถทำรายการได้ในขณะนี้</p>
+      </Modal>
     </Card>
   );
 };

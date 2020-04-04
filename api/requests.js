@@ -5,6 +5,6 @@ export const getRequests = async () => {
     const data = await axios.get(`${process.env.DOMAIN}/face-shield-request`);
     return data;
   } catch (error) {
-    //
+    return { error };
   }
 };
