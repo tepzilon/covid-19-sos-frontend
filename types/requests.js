@@ -13,8 +13,8 @@ export const requestFieldLabel = {
   faceShieldDemand: 'จำนวน face shield',
   status: 'สถานะ',
   province: 'จังหวัด',
-  name: 'ชื่อ-นามสกุล',
-  address: 'ที่อยู่',
+  name: 'รายชื่อผู้ขอรับ',
+  address: 'ที่อยู่โรงพยาบาล',
   phoneNumber: 'เบอร์โทรศัพท์'
 };
 
