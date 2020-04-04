@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StoreConnect } from '../../store/store';
+import { useRouter } from 'next/router';
 import styles from './register.module.scss';
 import {
   Form,
@@ -21,8 +22,12 @@ import TextArea from 'antd/lib/input/TextArea';
 import { MaskedInput } from 'antd-mask-input';
 import { updateField } from '../../store/register/register.actions';
 import { THAI_PROVINCES } from '../../types';
+import { postRequest } from '../../api/register';
 
-const Register = ({ updateField }) => {
+const Register = ({ state, updateField }) => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const RequiredFieldRule = (text) => ({
     required: true,
     message: 'กรุณากรอก' + text,
@@ -44,6 +49,13 @@ const Register = ({ updateField }) => {
     message: 'not email',
   });
 
+  const registerRequest = async () => {
+    setLoading(true);
+    await postRequest(state);
+    router.push('/register-complete');
+    setLoading(false);
+  };
+
   return (
     <Card style={{ borderRadius: '10px' }}>
       <div>
@@ -54,7 +66,7 @@ const Register = ({ updateField }) => {
         </p>
       </div>
       <Divider />
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={registerRequest}>
         <Form.Item
           label={inputFieldLabel.name}
           name={inputField.name}
@@ -184,7 +196,7 @@ const Register = ({ updateField }) => {
 
         <Form.Item>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={loading}>
               ลงทะเบียน
             </Button>
           </div>
@@ -200,6 +212,7 @@ const propsMapper = (store) => {
     updateField: (field, value) => {
       dispatch(updateField(field, value));
     },
+    state,
   };
 };
 

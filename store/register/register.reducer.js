@@ -12,7 +12,7 @@ export const initialState = {
   [inputField.email]: '',
   [inputField.notice]: '',
   [inputField.username]: '',
-  [inputField.password]: ''
+  [inputField.password]: '',
 };
 
 export const reducer = (state, action) => {
@@ -20,7 +20,7 @@ export const reducer = (state, action) => {
     case registerActionTypes.UPDATE_FIELD:
       return {
         ...state,
-        [action.payload.field]: action.payload.value
+        [action.payload.field]: action.payload.value,
       };
     default:
       return state;
