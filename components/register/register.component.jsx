@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   Form,
   Input,
@@ -10,27 +10,28 @@ import {
   Divider,
   Select,
   Modal,
-} from "antd";
-import TextArea from "antd/lib/input/TextArea";
-import { MaskedInput } from "antd-mask-input";
+} from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+import { MaskedInput } from 'antd-mask-input';
 import {
   inputField,
   inputFieldLabel,
   hospitalTypes,
   hospitalTypesLabel,
   THAI_PROVINCES,
-} from "../../types";
+} from '../../types';
 import {
   RequiredFieldRule,
   phoneRule,
   usernameRule,
   passwordRule,
   emailRule,
-} from "../../utils/registerRules";
-import { StoreConnect } from "../../store/store";
-import { updateField } from "../../store/register/register.actions";
+} from '../../utils/registerRules';
+import { StoreConnect } from '../../store/store';
+import { updateField } from '../../store/register/register.actions';
+import PageHeader from '../pageHeader/pageHeader.component';
 
-import { postRequest } from "../../api/register";
+import { postRequest } from '../../api/register';
 
 const Register = ({ state, updateField }) => {
   const [loading, setLoading] = useState(false);
@@ -44,19 +45,25 @@ const Register = ({ state, updateField }) => {
     if (response.error) {
       setFetchError(true);
     } else {
-      router.push("/register-complete");
+      router.push('/register-complete');
     }
     setLoading(false);
   };
 
   return (
-    <Card style={{ borderRadius: "10px" }}>
+    <Card style={{ borderRadius: '10px' }}>
       <div>
-        <h1>ลงทะเบียนเพื่อขอรับ Face shield</h1>
-        <p>
-          อธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
-          คำอธิบาย คำอธิบาย คำอธิบาย คำอธิบาย
-        </p>
+        <PageHeader label="ลงทะเบียนเพื่อขอรับ Face Shield" />
+        <div className="container-center">
+          <p>
+            โรงพยาบาลที่ต้องการอุปกรณ์ดังกล่าว สามารถแจ้งความประสงค์
+            โดยกรอกข้อมูลด้านล่างนี้
+            <br />
+            <br />
+            หากต้องการข้อมูลเพิ่มเติม หรือมีข้อสงสัยประการใด
+            สามารถติดต่อทีมงานได้ที่ LINE: @meticuly
+          </p>
+        </div>
       </div>
       <Divider />
       <Form layout="vertical" onFinish={registerRequest}>
@@ -98,7 +105,9 @@ const Register = ({ state, updateField }) => {
           label={inputFieldLabel.faceShieldDemand}
           name={inputField.faceShieldDemand}
           rules={[RequiredFieldRule(inputFieldLabel.faceShieldDemand)]}
-          onChange={(e) => updateField(inputField.faceShieldDemand, e.target.value)}
+          onChange={(e) =>
+            updateField(inputField.faceShieldDemand, e.target.value)
+          }
         >
           <InputNumber min={0} />
         </Form.Item>
@@ -140,7 +149,9 @@ const Register = ({ state, updateField }) => {
           <MaskedInput
             mask="11-1111-1111"
             size="12"
-            onChange={(e) => updateField(inputField.phoneNumber, e.target.value)}
+            onChange={(e) =>
+              updateField(inputField.phoneNumber, e.target.value)
+            }
           />
         </Form.Item>
 
@@ -163,7 +174,9 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
 
         <Divider />
-        <div>กรุณากรอกไอดีและพาสเวิร์ดเพื่อเข้าใช้งานครั้งต่อไป</div>
+        <div style={{ marginBottom: '24px' }}>
+          กรุณากรอก Username และ Password เพื่อเข้าใช้งานครั้งต่อไป
+        </div>
 
         <Form.Item
           label={inputFieldLabel.username}
@@ -184,7 +197,7 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
 
         <Form.Item>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type="primary" htmlType="submit" loading={loading}>
               ลงทะเบียน
             </Button>
@@ -207,6 +220,16 @@ const Register = ({ state, updateField }) => {
       >
         <p>ไม่สามารถทำรายการได้ในขณะนี้</p>
       </Modal>
+      <style jsx>
+        {`
+          p {
+            width: 418px;
+            font-size: 16px;
+            line-height: 22px;
+            margin-top: 20px;
+          }
+        `}
+      </style>
     </Card>
   );
 };

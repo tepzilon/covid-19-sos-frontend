@@ -9,30 +9,29 @@ export const inputField = {
   email: 'email',
   notice: 'notice',
   username: 'username',
-  password: 'password'
+  password: 'password',
 };
 
 export const inputFieldLabel = {
   name: 'ชื่อ-นามสกุลของผู้ส่งคำขอ',
   hospitalName: 'ชื่อโรงพยาบาล',
   hospitalType: 'ประเภทของสถานพยาบาล',
-  faceShieldDemand: 'จำนวน face shield ที่ต้องการ (ชิ้น)',
+  faceShieldDemand: 'จำนวน Face Shield ที่ต้องการ (ชิ้น)',
   address: 'ที่อยู่การจัดส่ง',
   province: 'จังหวัด',
   phoneNumber: 'เบอร์โทรติดต่อ',
-  email: 'อีเมล์',
+  email: 'Email',
   notice: 'หมายเหตุ',
-  username: 'ชื่อบัญชีผู้ใช้',
-  password: 'พาสเวิร์ด'
+  username: 'Username',
+  password: 'Password',
 };
-
 
 export const hospitalTypes = {
   public: 'public',
-  private: 'private'
+  private: 'private',
 };
 
 export const hospitalTypesLabel = {
   public: 'ของรัฐ',
-  private: 'ของเอกชน'
+  private: 'ของเอกชน',
 };

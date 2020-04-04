@@ -9,9 +9,13 @@ import {
   getCompareString,
   getCompareNumber,
 } from "../../../utils/requests";
-import { requestField, requestFieldLabel } from "../../../types";
+import {
+  updateModalRequestKey,
+  toggleModalShow,
+} from "../../../store/requests/requests.actions";
+import { requestField, requestFieldLabel, backgroundColours } from "../../../types";
 
-const RequestsTable = ({ filter, requestsValue }) => {
+const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleModalShow }) => {
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -58,6 +62,7 @@ const RequestsTable = ({ filter, requestsValue }) => {
           toggleModalShow();
         },
       })}
+      pagination={{position: ['bottomCenter']}}
     />
   );
 };
@@ -70,9 +75,6 @@ const propsMapper = (store) => {
     },
     toggleModalShow: () => {
       dispatch(toggleModalShow());
-    },
-    updateData: (data) => {
-      dispatch(updateData(data));
     },
     requestsValue: state.data,
   };
