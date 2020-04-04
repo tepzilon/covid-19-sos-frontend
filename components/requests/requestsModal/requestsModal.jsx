@@ -3,8 +3,11 @@ import {Modal, Row, Col} from 'antd'
 import { StoreConnect } from "../../../store/store";
 import styles from "./requestsModal.module.scss";
 import { requestField, requestFieldLabel } from "../../../types";
+import {
+  toggleModalShow,
+} from "../../../store/requests/requests.actions";
 
-const RequestsModal = ({show, requestKey, requestsValue}) => {
+const RequestsModal = ({show, requestKey, requestsValue, toggleModalShow}) => {
   return requestsValue.find(e => e.key === requestKey) ? (
         <Modal
           title={
@@ -51,8 +54,11 @@ const RequestsModal = ({show, requestKey, requestsValue}) => {
 }
 
 const propsMapper = (store) => {
-  const { state } = store.requests;
+  const { state, dispatch } = store.requests;
   return {
+    toggleModalShow: () => {
+      dispatch(toggleModalShow());
+    },
     show: state.modal.show,
     requestKey: state.modal.requestKey,
     requestsValue: state.data,

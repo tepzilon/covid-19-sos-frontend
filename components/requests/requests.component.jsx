@@ -13,7 +13,8 @@ import {
 import { getRequests } from "../../api";
 
 const Requests = ({
-  updateData
+  updateData,
+  requestsValue
 }) => {
   const [loading, setLoading] = useState(false);
   const [fetchError, setFetchError] = useState(false);
@@ -26,13 +27,20 @@ const Requests = ({
       if (response.error) {
         setFetchError(true);
       } else {
-        updateData(response.data);
+        const res = response.data.map((e, i) => {
+          return {
+            ...e, 
+            key: i
+          }
+        })
+        updateData(res);
       }
       setLoading(false);
     }
     mountGetRequest();
   }, []);
 
+  
   return (
     <Card bordered={false}>
       <h1 style={{ textAlign: "center" }}>
@@ -75,6 +83,7 @@ const propsMapper = (store) => {
     updateData: (data) => {
       dispatch(updateData(data));
     },
+    requestsValue: state.data
   };
 };
 export default StoreConnect(propsMapper)(Requests);

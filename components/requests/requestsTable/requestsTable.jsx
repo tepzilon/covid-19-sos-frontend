@@ -12,11 +12,10 @@ import {
 import {
   updateModalRequestKey,
   toggleModalShow,
-  updateData,
 } from "../../../store/requests/requests.actions";
 import { requestField, requestFieldLabel } from "../../../types";
 
-const RequestsTable = ({ filter, requestsValue }) => {
+const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleModalShow }) => {
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -70,14 +69,11 @@ const RequestsTable = ({ filter, requestsValue }) => {
 const propsMapper = (store) => {
   const { state, dispatch } = store.requests;
   return {
-    updateModalRequestID: (id) => {
-      dispatch(updateModalRequestKey(id));
+    updateModalRequestKey: (key) => {
+      dispatch(updateModalRequestKey(key));
     },
     toggleModalShow: () => {
       dispatch(toggleModalShow());
-    },
-    updateData: (data) => {
-      dispatch(updateData(data));
     },
     requestsValue: state.data,
   };

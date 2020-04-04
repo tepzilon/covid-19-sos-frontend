@@ -3,6 +3,10 @@ import {Select, Row, Col} from 'antd'
 import { StoreConnect } from "../../../store/store";
 import styles from "./requestsSearch.module.scss";
 import { requestField } from "../../../types";
+import {
+    updateModalRequestKey,
+    toggleModalShow,
+} from "../../../store/requests/requests.actions";
 
 const { Option } = Select;
 
@@ -51,9 +55,6 @@ const propsMapper = (store) => {
       },
       toggleModalShow: () => {
         dispatch(toggleModalShow());
-      },
-      updateData: (data) => {
-        dispatch(updateData(data));
       },
       requestsValue: state.data,
     };
