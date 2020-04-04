@@ -1,7 +1,16 @@
 import React from 'react';
 import { StoreConnect } from '../../store/store';
 import styles from './register.module.scss';
-import { Form, Input, InputNumber, Radio, Card, Button, Divider } from 'antd';
+import {
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Card,
+  Button,
+  Divider,
+  Select,
+} from 'antd';
 import {
   inputField,
   inputFieldLabel,
@@ -11,6 +20,7 @@ import {
 import TextArea from 'antd/lib/input/TextArea';
 import { MaskedInput } from 'antd-mask-input';
 import { updateField } from '../../store/register/register.actions';
+import { THAI_PROVINCES } from '../../types';
 
 const Register = ({ updateField }) => {
   const RequiredFieldRule = (text) => ({
@@ -18,7 +28,7 @@ const Register = ({ updateField }) => {
     message: 'กรุณากรอก' + text,
   });
   const phoneRule = () => ({
-    pattern: new RegExp(/^0[0-9]-[0-9]{3}-[0-9]{4}[0-9_]$/, 'i'),
+    pattern: new RegExp(/^0[0-9]-[0-9]{4}-[0-9]{3}[0-9_]$/, 'i'),
     message: 'หมายเลขโทรศัพท์ไม่ถูกต้อง',
   });
 
@@ -79,6 +89,22 @@ const Register = ({ updateField }) => {
         </Form.Item>
 
         <Form.Item
+          label={inputFieldLabel.province}
+          name={inputField.province}
+          rules={[RequiredFieldRule(inputFieldLabel.province)]}
+          // onChange={(val) => updateField(inputField.province, val)}
+        >
+          <Select
+            showSearch
+            onChange={(val) => updateField(inputField.province, val)}
+          >
+            {THAI_PROVINCES.map((province) => (
+              <Select.Option value={province}>{province}</Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
           label={inputFieldLabel.address}
           name={inputField.address}
           rules={[RequiredFieldRule(inputFieldLabel.address)]}
@@ -97,7 +123,7 @@ const Register = ({ updateField }) => {
         >
           {/* <Input/> */}
           <MaskedInput
-            mask="11-111-11111"
+            mask="11-1111-1111"
             size="12"
             onChange={(e) =>
               updateField(inputField.phoneNumber, e.target.value)
