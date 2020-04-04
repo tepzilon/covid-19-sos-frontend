@@ -1,9 +1,8 @@
 import { requestsActionTypes } from './requests.types';
-import dummy from './dummy';
 import { toggleModalShow, updateModalRequestKey } from './requests.utils';
 
 export const initialState = {
-  data: dummy,
+  data: [],
   filter: '',
   modal: {
     show: false,

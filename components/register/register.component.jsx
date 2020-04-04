@@ -31,6 +31,18 @@ const Register = ({ updateField }) => {
     pattern: new RegExp(/^0[0-9]-[0-9]{4}-[0-9]{3}[0-9_]$/, 'i'),
     message: 'หมายเลขโทรศัพท์ไม่ถูกต้อง',
   });
+  const usernameRule = () => ({
+    pattern: new RegExp(/^[0-9a-zA-Z_]*$/),
+    message: 'does not match ^[0-9a-zA-Z]*$',
+  });
+  const passwordRule = () => ({
+    pattern: new RegExp(/.{8,}/),
+    message: 'len must >= 8',
+  });
+  const emailRule = () => ({
+    pattern: new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
+    message: 'not email',
+  });
 
   return (
     <Card style={{ borderRadius: '10px' }}>
@@ -134,7 +146,7 @@ const Register = ({ updateField }) => {
         <Form.Item
           label={inputFieldLabel.email}
           name={inputField.email}
-          rules={[RequiredFieldRule(inputFieldLabel.email)]}
+          rules={[RequiredFieldRule(inputFieldLabel.email), emailRule]}
           onChange={(e) => updateField(inputField.email, e.target.value)}
         >
           <Input />
@@ -155,7 +167,7 @@ const Register = ({ updateField }) => {
         <Form.Item
           label={inputFieldLabel.username}
           name={inputField.username}
-          rules={[RequiredFieldRule(inputFieldLabel.username)]}
+          rules={[RequiredFieldRule(inputFieldLabel.username), usernameRule]}
           onChange={(e) => updateField(inputField.username, e.target.value)}
         >
           <Input />
@@ -164,7 +176,7 @@ const Register = ({ updateField }) => {
         <Form.Item
           label={inputFieldLabel.password}
           name={inputField.password}
-          rules={[RequiredFieldRule(inputFieldLabel.password)]}
+          rules={[RequiredFieldRule(inputFieldLabel.password), passwordRule]}
           onChange={(e) => updateField(inputField.password, e.target.value)}
         >
           <Input.Password />

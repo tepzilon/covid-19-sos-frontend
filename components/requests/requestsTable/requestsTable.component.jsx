@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StoreConnect } from '../../../store/store';
 import styles from './requestsTable.module.scss';
 import { Table } from 'antd';
@@ -9,25 +9,9 @@ import {
   getCompareString,
   getCompareNumber,
 } from '../../../utils/requests';
-import { getRequests } from '../../../api';
 import { requestField, requestFieldLabel } from '../../../types';
 
 const RequestsTable = ({ filter, requestsValue }) => {
-  // useEffect(() => {
-  //   async function mountGetRequest() {
-  //     const response = await getRequests();
-  //     if (response.error) {
-  //       // show modal
-  //     } else {
-  //       // set store
-  //     }
-  //   }
-  //   mountGetRequest();
-  //   return () => {
-  //     cleanup;
-  //   };
-  // }, []);
-
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -92,6 +76,9 @@ const propsMapper = (store) => {
     },
     toggleModalShow: () => {
       dispatch(toggleModalShow());
+    },
+    updateData: (data) => {
+      dispatch(updateData(data));
     },
     requestsValue: state.data,
   };

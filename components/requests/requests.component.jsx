@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { StoreConnect } from '../../store/store';
 import styles from './requests.module.scss';
 import RequestsTable from './requestsTable/requestsTable.component';
 import { Card, Select, Modal, Row, Col } from 'antd';
 import {
   updateModalRequestKey,
-  toggleModalShow
+  toggleModalShow,
+  updateData,
 } from '../../store/requests/requests.actions';
+import { getRequests } from '../../api';
 import { requestField, requestFieldLabel, gridSize } from '../../types';
 
 const { Option } = Select;
@@ -14,14 +16,26 @@ const { Option } = Select;
 const Requests = ({
   updateModalRequestKey,
   toggleModalShow,
+  updateData,
   show,
   requestKey,
-  requestsValue
+  requestsValue,
 }) => {
+  useEffect(() => {
+    async function mountGetRequest() {
+      const response = await getRequests();
+      if (response.error) {
+        // show modal
+      } else {
+        console.log(response.data);
+        updateData(response.data);
+      }
+    }
+    mountGetRequest();
+  }, []);
+
   return (
-    <Card
-      bordered={false}
-    >
+    <Card bordered={false}>
       <h1 style={{ textAlign: 'center' }}>
         รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield
       </h1>
@@ -33,15 +47,15 @@ const Requests = ({
           <Col span={20}>
             <Select
               showSearch
-              optionFilterProp='children'
+              optionFilterProp="children"
               filterOption={(input, option) =>
                 option.props.children
                   .toLowerCase()
                   .indexOf(input.toLowerCase()) >= 0
               }
-              placeholder='ชื่อโรงพยาบาล/จังหวัด'
+              placeholder="ชื่อโรงพยาบาล/จังหวัด"
               style={{ width: '100%' }}
-              onChange={e => {
+              onChange={(e) => {
                 updateModalRequestKey(parseInt(e));
                 toggleModalShow();
               }}
@@ -57,60 +71,67 @@ const Requests = ({
           </Col>
         </Row>
       </div>
-      <Modal
-        title={
-          requestsValue.find(e => e.key === requestKey)[
-            requestField.hospitalName
-          ]
-        }
-        visible={show}
-        onCancel={toggleModalShow}
-        footer={null}
-      >
-        <Row>
-          <Col span={8}>{requestFieldLabel.name}</Col>
-          <Col span={16}>
-            {requestsValue.find(e => e.key === requestKey)[requestField.name]}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>{requestFieldLabel.phoneNumber}</Col>
-          <Col span={16}>
-            {
-              requestsValue.find(e => e.key === requestKey)[
-                requestField.phoneNumber
-              ]
-            }
-          </Col>
-        </Row>
-        <Row>
-          <Col span={8}>{requestFieldLabel.address}</Col>
-          <Col span={16}>
-            {
-              requestsValue.find(e => e.key === requestKey)[
-                requestField.address
-              ]
-            }
-          </Col>
-        </Row>
-      </Modal>
+      {/* <Modal
+          title={
+            requestsValue.find((e) => e.key === requestKey)[
+              requestField.hospitalName
+            ]
+          }
+          visible={show}
+          onCancel={toggleModalShow}
+          footer={null}
+        >
+          <Row>
+            <Col span={8}>{requestFieldLabel.name}</Col>
+            <Col span={16}>
+              {
+                requestsValue.find((e) => e.key === requestKey)[
+                  requestField.name
+                ]
+              }
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>{requestFieldLabel.phoneNumber}</Col>
+            <Col span={16}>
+              {
+                requestsValue.find((e) => e.key === requestKey)[
+                  requestField.phoneNumber
+                ]
+              }
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>{requestFieldLabel.address}</Col>
+            <Col span={16}>
+              {
+                requestsValue.find((e) => e.key === requestKey)[
+                  requestField.address
+                ]
+              }
+            </Col>
+          </Row>
+        </Modal> */}
       <RequestsTable />
     </Card>
   );
 };
 
-const propsMapper = store => {
+const propsMapper = (store) => {
   const { state, dispatch } = store.requests;
   return {
-    updateModalRequestKey: key => {
+    updateModalRequestKey: (key) => {
       dispatch(updateModalRequestKey(key));
     },
     toggleModalShow: () => {
       dispatch(toggleModalShow());
     },
+    updateData: (data) => {
+      dispatch(updateData(data));
+    },
     show: state.modal.show,
     requestKey: state.modal.requestKey,
-    requestsValue: state.data
+    requestsValue: state.data,
   };
 };
 export default StoreConnect(propsMapper)(Requests);
