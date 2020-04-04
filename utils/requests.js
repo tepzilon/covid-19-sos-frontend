@@ -1,6 +1,7 @@
 import {
   requestField,
   requestStatus,
+  requestStatusLabel,
   requestStatusColours
 } from '../types/requests';
 
@@ -14,7 +15,7 @@ const getStatusHTML = status => {
       color = requestStatusColours.shipping;
       break;
   }
-  return <span style={{ color }}>{status}</span>;
+  return <span style={{ color }}>{requestStatusLabel[status]}</span>;
 };
 
 export const getStatusPriority = status => {

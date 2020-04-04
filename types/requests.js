@@ -19,6 +19,12 @@ export const requestFieldLabel = {
 };
 
 export const requestStatus = {
+  recieved: 'recieved',
+  shipping: 'shipping',
+  pending: 'pending'
+};
+
+export const requestStatusLabel = {
   recieved: 'ได้รับของแล้ว',
   shipping: 'อยู่ในระหว่างการจัดส่ง',
   pending: 'ขอรับความช่วยเหลือ'
