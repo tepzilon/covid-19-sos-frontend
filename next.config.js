@@ -1,5 +1,5 @@
 module.exports = {
   env: {
-    DOMAIN: 'http://localhost:8080/api',
+    DOMAIN: process.env.API_HOST || 'http://localhost:8080/api',
   },
 };

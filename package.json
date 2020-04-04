@@ -6,6 +6,7 @@
     "lint": "eslint ./components/** ./pages/** -c .eslintrc.json --fix --ext js,jsx",
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start"
   },
   "dependencies": {
