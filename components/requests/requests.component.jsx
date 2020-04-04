@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Select, Modal, Row, Col, Spin, Button } from 'antd';
-import { StoreConnect } from '../../store/store';
-import styles from './requests.module.scss';
-import RequestsTable from './requestsTable/requestsTable.component';
+import React, { useEffect, useState } from "react";
+import {
+  Card, Select, Modal, Row, Col, Spin, Button,
+} from "antd";
+import { StoreConnect } from "../../store/store";
+import styles from "./requests.module.scss";
+import RequestsTable from "./requestsTable/requestsTable.component";
 import {
   updateModalRequestKey,
   toggleModalShow,
   updateData,
-} from '../../store/requests/requests.actions';
-import { getRequests } from '../../api';
-import { requestField, requestFieldLabel, gridSize } from '../../types';
+} from "../../store/requests/requests.actions";
+import { getRequests } from "../../api";
+import { requestField, requestFieldLabel, gridSize } from "../../types";
 
 const { Option } = Select;
 
@@ -41,25 +43,23 @@ const Requests = ({
 
   return (
     <Card bordered={false}>
-      <h1 style={{ textAlign: 'center' }}>
+      <h1 style={{ textAlign: "center" }}>
         รายชื่อโรงพยาบาลที่ลงทะเบียนเพื่อขอรับ Face Shield
       </h1>
-      <div style={{ margin: '2rem auto', width: '50%' }}>
+      <div style={{ margin: "2rem auto", width: "50%" }}>
         <Row>
           <Col span={4}>
-            <p style={{ textAlign: 'center' }}>ค้นหา</p>
+            <p style={{ textAlign: "center" }}>ค้นหา</p>
           </Col>
           <Col span={20}>
             <Select
               showSearch
               optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.props.children
-                  .toLowerCase()
-                  .indexOf(input.toLowerCase()) >= 0
-              }
+              filterOption={(input, option) => option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0}
               placeholder="ชื่อโรงพยาบาล/จังหวัด"
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
               onChange={(e) => {
                 updateModalRequestKey(parseInt(e));
                 toggleModalShow();
@@ -134,8 +134,8 @@ const Requests = ({
       {loading ? (
         <Row>
           <Col offset={12}>
-            {' '}
-            <Spin size="large" style={{ transform: 'translateX(-50%)' }} />
+            {" "}
+            <Spin size="large" style={{ transform: "translateX(-50%)" }} />
           </Col>
         </Row>
       ) : null}
