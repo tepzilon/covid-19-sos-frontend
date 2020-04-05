@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/register');
+    router.push("/register");
   }, []);
 
   return <></>;

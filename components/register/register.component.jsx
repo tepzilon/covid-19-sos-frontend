@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Form,
   Input,
@@ -10,32 +10,33 @@ import {
   Divider,
   Select,
   Modal,
-} from 'antd';
-import TextArea from 'antd/lib/input/TextArea';
-import { MaskedInput } from 'antd-mask-input';
+} from "antd";
+import TextArea from "antd/lib/input/TextArea";
+import { MaskedInput } from "antd-mask-input";
 import {
   inputField,
   inputFieldLabel,
   hospitalTypes,
   hospitalTypesLabel,
   THAI_PROVINCES,
-} from '../../types';
+} from "../../types";
 import {
   RequiredFieldRule,
   phoneRule,
   usernameRule,
   passwordRule,
   emailRule,
-} from '../../utils/registerRules';
-import { StoreConnect } from '../../store/store';
-import { updateField } from '../../store/register/register.actions';
-import PageHeader from '../pageHeader/pageHeader.component';
+} from "../../utils/registerRules";
+import { StoreConnect } from "../../store/store";
+import { updateField } from "../../store/register/register.actions";
+import PageHeader from "../pageHeader/pageHeader.component";
 
-import { postRequest } from '../../api/register';
+import { postRequest, handlePostRequestError } from "../../api/register";
 
 const Register = ({ state, updateField }) => {
   const [loading, setLoading] = useState(false);
   const [fetchError, setFetchError] = useState(false);
+  const [alertMessage, setAlertMessage] = useState({ header: "", body: "" });
 
   const router = useRouter();
 
@@ -43,15 +44,16 @@ const Register = ({ state, updateField }) => {
     setLoading(true);
     const response = await postRequest(state);
     if (response.error) {
+      setAlertMessage(handlePostRequestError(response.error));
       setFetchError(true);
     } else {
-      router.push('/register-complete');
+      router.push("/register-complete");
     }
     setLoading(false);
   };
 
   return (
-    <Card style={{ borderRadius: '10px' }}>
+    <Card style={{ borderRadius: "10px" }}>
       <div>
         <PageHeader label="ลงทะเบียนเพื่อขอรับ Face Shield" />
         <div className="container-center">
@@ -105,9 +107,7 @@ const Register = ({ state, updateField }) => {
           label={inputFieldLabel.faceShieldDemand}
           name={inputField.faceShieldDemand}
           rules={[RequiredFieldRule(inputFieldLabel.faceShieldDemand)]}
-          onChange={(e) =>
-            updateField(inputField.faceShieldDemand, e.target.value)
-          }
+          onChange={(e) => updateField(inputField.faceShieldDemand, e.target.value)}
         >
           <InputNumber min={0} />
         </Form.Item>
@@ -149,9 +149,7 @@ const Register = ({ state, updateField }) => {
           <MaskedInput
             mask="11-1111-1111"
             size="12"
-            onChange={(e) =>
-              updateField(inputField.phoneNumber, e.target.value)
-            }
+            onChange={(e) => updateField(inputField.phoneNumber, e.target.value)}
           />
         </Form.Item>
 
@@ -174,7 +172,7 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
 
         <Divider />
-        <div style={{ marginBottom: '24px' }}>
+        <div style={{ marginBottom: "24px" }}>
           กรุณากรอก Username และ Password เพื่อเข้าใช้งานครั้งต่อไป
         </div>
 
@@ -197,7 +195,7 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
 
         <Form.Item>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <Button type="primary" htmlType="submit" loading={loading}>
               ลงทะเบียน
             </Button>
@@ -205,7 +203,7 @@ const Register = ({ state, updateField }) => {
         </Form.Item>
       </Form>
       <Modal
-        title="เซิร์ฟเวอร์ขัดข้อง"
+        title={alertMessage.header}
         visible={fetchError}
         footer={[
           <Button
@@ -218,7 +216,7 @@ const Register = ({ state, updateField }) => {
           </Button>,
         ]}
       >
-        <p>ไม่สามารถทำรายการได้ในขณะนี้</p>
+        <p>{alertMessage.body}</p>
       </Modal>
       <style jsx>
         {`

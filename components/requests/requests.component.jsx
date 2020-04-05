@@ -6,16 +6,11 @@ import { StoreConnect } from "../../store/store";
 import styles from "./requests.module.scss";
 import RequestsTable from "./requestsTable/requestsTable";
 import RequestsModal from "./requestsModal/requestsModal";
-import RequestsSearch from './requestsSearch/requestsSearch';
-import {
-  updateData,
-} from "../../store/requests/requests.actions";
+import RequestsSearch from "./requestsSearch/requestsSearch";
+import { updateData } from "../../store/requests/requests.actions";
 import { getRequests } from "../../api";
 
-const Requests = ({
-  updateData,
-  requestsValue
-}) => {
+const Requests = ({ updateData, requestsValue }) => {
   const [loading, setLoading] = useState(false);
   const [fetchError, setFetchError] = useState(false);
 
@@ -23,16 +18,13 @@ const Requests = ({
     async function mountGetRequest() {
       setLoading(true);
       const response = await getRequests();
-      console.log(response);
       if (response.error) {
         setFetchError(true);
       } else {
-        const res = response.data.map((e, i) => {
-          return {
-            ...e, 
-            key: i
-          }
-        })
+        const res = response.data.map((e, i) => ({
+          ...e,
+          key: i,
+        }));
         updateData(res);
       }
       setLoading(false);
@@ -40,7 +32,6 @@ const Requests = ({
     mountGetRequest();
   }, []);
 
-  
   return (
     <Card bordered={false}>
       <h1 style={{ textAlign: "center" }}>
@@ -83,7 +74,7 @@ const propsMapper = (store) => {
     updateData: (data) => {
       dispatch(updateData(data));
     },
-    requestsValue: state.data
+    requestsValue: state.data,
   };
 };
 export default StoreConnect(propsMapper)(Requests);

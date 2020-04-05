@@ -15,7 +15,9 @@ import {
 } from "../../../store/requests/requests.actions";
 import { requestField, requestFieldLabel, backgroundColours } from "../../../types";
 
-const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleModalShow }) => {
+const RequestsTable = ({
+  filter, requestsValue, updateModalRequestKey, toggleModalShow,
+}) => {
   const columns = [
     {
       title: requestFieldLabel.hospitalName,
@@ -62,7 +64,7 @@ const RequestsTable = ({ filter, requestsValue, updateModalRequestKey, toggleMod
           toggleModalShow();
         },
       })}
-      pagination={{position: ['bottomCenter']}}
+      pagination={{ position: ["bottomCenter"] }}
     />
   );
 };

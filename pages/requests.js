@@ -2,7 +2,7 @@ import React from "react";
 import Requests from "../components/requests/requests.component";
 import GridWrap from "../components/gridWrap/gridWrap.component";
 import { gridSize, backgroundColours } from "../types";
-import Navbar from '../components/navbar/navbar'
+import Navbar from "../components/navbar/navbar";
 
 const RequestsPage = () => (
   <div>
@@ -11,7 +11,7 @@ const RequestsPage = () => (
       <Requests />
     </GridWrap>
   </div>
-  
+
 );
 
 export default RequestsPage;

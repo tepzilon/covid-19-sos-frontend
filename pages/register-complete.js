@@ -1,19 +1,23 @@
-import React from 'react';
-import { Card, Divider } from 'antd';
-import GridWrap from '../components/gridWrap/gridWrap.component';
-import { gridSize, backgroundColours } from '../types';
-import Link from 'next/link';
-import PageHeader from '../components/pageHeader/pageHeader.component';
+import React from "react";
+import { Card, Divider } from "antd";
+import Link from "next/link";
+import GridWrap from "../components/gridWrap/gridWrap.component";
+import { gridSize, backgroundColours } from "../types";
+import PageHeader from "../components/pageHeader/pageHeader.component";
 
 const RegisterPage = () => (
   <GridWrap size={gridSize.sm} color={backgroundColours.register}>
-    <Card style={{ borderRadius: '8px' }}>
+    <Card style={{ borderRadius: "8px" }}>
       <PageHeader label="ลงทะเบียนเพื่อขอรับ Face Shield สำเร็จ" />
-      <Divider style={{ marginTop: '48px' }} />
+      <Divider style={{ marginTop: "48px" }} />
       <div className="container-center">
         <p>
-          ข้อมูลความต้องการของท่านได้ถูกบันทึกแล้ว <br></br>
-          ทีมงานจะทำการส่งมอบตามลำดับต่อไป หากท่านมีคำถามใด <br></br>
+          ข้อมูลความต้องการของท่านได้ถูกบันทึกแล้ว
+          {" "}
+          <br />
+          ทีมงานจะทำการส่งมอบตามลำดับต่อไป หากท่านมีคำถามใด
+          {" "}
+          <br />
           สามารถติดต่อทีมงานได้ที่ LINE: @meticuly
         </p>
       </div>

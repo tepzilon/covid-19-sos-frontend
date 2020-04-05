@@ -1,7 +1,7 @@
-import { Row, Col } from 'antd';
-import { gridSize } from '../../types';
+import { Row, Col } from "antd";
+import { gridSize } from "../../types";
 
-const GridWrap = ({ size = 'sm', color = '#ffffff', children }) => {
+const GridWrap = ({ size = "sm", color = "#ffffff", children }) => {
   let offset;
   let span;
   switch (size) {
@@ -20,7 +20,7 @@ const GridWrap = ({ size = 'sm', color = '#ffffff', children }) => {
 
   return (
     <>
-      <Row style={{ margin: '2rem 0 4rem 0' }}>
+      <Row style={{ margin: "2rem 0 4rem 0" }}>
         <Col
           lg={{ offset, span }}
           sm={{ offset: 4, span: 16 }}
