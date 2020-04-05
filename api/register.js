@@ -11,3 +11,18 @@ export const postRequest = async (requestDatas) => {
     return { error };
   }
 };
+
+export const handlePostRequestError = (error) => {
+  switch (error.response.status) {
+    case 409:
+      return {
+        header: 'Username นี้ถูกใช้งานแล้ว',
+        body: 'กรุณาเลือก Username ใหม่',
+      };
+    default:
+      return {
+        header: 'เซิร์ฟเวอร์ขัดข้อง',
+        body: 'ไม่สามารถทำรายการได้ในขณะนี้',
+      };
+  }
+};
